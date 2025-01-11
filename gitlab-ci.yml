@@ -1,0 +1,16 @@
+stages:
+  - test
+  - deploy
+
+test:
+  stage: test
+  script:
+    - echo "Running PySpark unit tests"
+    - pytest spark/tests
+
+deploy:
+  stage: deploy
+  script:
+    - echo "Deploying infrastructure using Terraform"
+    - terraform init
+    - terraform apply -auto-approve
